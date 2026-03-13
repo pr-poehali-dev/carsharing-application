@@ -4,13 +4,15 @@ import MapView from "@/components/MapView";
 import BookingView from "@/components/BookingView";
 import TripsView from "@/components/TripsView";
 import ProfileView from "@/components/ProfileView";
+import SupportChat from "@/components/SupportChat";
 
-type Tab = "map" | "booking" | "trips" | "profile";
+type Tab = "map" | "booking" | "trips" | "profile" | "support";
 
 const TABS = [
   { id: "map" as Tab, label: "Карта", icon: "Map" },
   { id: "booking" as Tab, label: "Аренда", icon: "Car" },
   { id: "trips" as Tab, label: "Поездки", icon: "Route" },
+  { id: "support" as Tab, label: "Помощь", icon: "MessageCircle" },
   { id: "profile" as Tab, label: "Профиль", icon: "User" },
 ];
 
@@ -38,7 +40,7 @@ export default function Index() {
 
       {/* Main content */}
       <div className="flex-1 relative overflow-hidden">
-        {(["map", "booking", "trips", "profile"] as Tab[]).map(tab => (
+        {(["map", "booking", "trips", "support", "profile"] as Tab[]).map(tab => (
           <div
             key={tab}
             className="absolute inset-0 overflow-hidden transition-opacity duration-300"
@@ -50,6 +52,7 @@ export default function Index() {
             {tab === "map" && <MapView />}
             {tab === "booking" && <BookingView />}
             {tab === "trips" && <TripsView />}
+            {tab === "support" && <SupportChat />}
             {tab === "profile" && <ProfileView />}
           </div>
         ))}
@@ -76,7 +79,7 @@ export default function Index() {
                   />
                 )}
                 <Icon
-                  name={tab.icon as "Map" | "Car" | "Route" | "User"}
+                  name={tab.icon as "Map" | "Car" | "Route" | "MessageCircle" | "User"}
                   size={22}
                   style={{ color: isActive ? "var(--drive-green)" : "rgba(255,255,255,0.35)" }}
                 />
